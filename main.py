@@ -1,4 +1,5 @@
 from videoconverter.video_to_text import extract_audio_from_video,transcribe_audio
+from visual_processing.keyframe_extraction import process_video_frames
 from rag.splitter import splitter
 from rag.retrieve import search
 from rag.vectorstore import create_vectorstore
@@ -87,6 +88,8 @@ def main():
         print(f"✅ Vectorstore for '{video_name}' already exists.")
     else:
         print("⚙️ Processing video...")
+
+        process_video_frames(video_path)
 
         audio_path = extract_audio_from_video(video_path)
         transcript = transcribe_audio(audio_path)
